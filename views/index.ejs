@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>file uploading</title>
+  </head>
+  <body>
+    <h1>welcome to file uploading page</h1>
+
+    <input type="file" name="sound" id="sound" />
+    <br />
+    <br /><br />
+    <button onclick="saveFile()">save</button>
+    <br />
+    <br />
+    <a href="/sounds">go to sounds</a>
+
+    <script>
+      function saveFile() {
+        const sound = document.getElementById("sound");
+        const formData = new FormData();
+        formData.append("sound", sound.files[0]);
+
+        fetch("/upload", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message) {
+              console.log(data.message);
+            } else {
+              console.log("uploading done");
+            }
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      }
+    </script>
+  </body>
+</html>

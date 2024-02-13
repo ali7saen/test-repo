@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+</head>
+<body>
+    <audio controls id="audioPlayer">
+        <source src="/sounds/get" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <script>
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    audioPlayer.addEventListener('progress', () => {
+        // Progress event handler
+        console.log('Audio loading progress:', audioPlayer.buffered);
+    });
+
+    audioPlayer.addEventListener('timeupdate', () => {
+        // Time update event handler
+        console.log('Current playback time:', audioPlayer.currentTime);
+    });
+</script>
+</body>
+</html>
